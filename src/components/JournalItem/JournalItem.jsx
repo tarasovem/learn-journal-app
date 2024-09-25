@@ -1,15 +1,14 @@
 import './JournalItem.css';
 
-function JournalItem() {
-	const title = 'Подготовка к обновлению курсов';
-	const date = new Date();
-	const text = 'Сегодня провёл весь день за...';
+function JournalItem({title, date, text}) {
+	const formatter = new Intl.DateTimeFormat('ru-RU');
+	const FormattedDate = formatter.format(date);
 	
 	return (
-		<div className="journal-item">
+		<div className="journal-item" ke>
 			<h2 className="journal-item__header">{title}</h2>
 			<div className="journal-item__body">
-				<div className="journal-item__date">{date.toLocaleDateString('ru-RU')}</div>
+				<div className="journal-item__date">{FormattedDate}</div>
 				<div className="journal-item__text">{text}</div>
 			</div>
 		</div>
