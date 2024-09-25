@@ -1,6 +1,8 @@
 import './App.css';
 import Button from './components/Button/Button';
+import CardButton from './components/CardButton/CardButton';
 import JournalItem from './components/JournalItem/JournalItem';
+
 function App() {
 	const data = [
 		{
@@ -26,12 +28,13 @@ function App() {
 			<p>Какой-то текст</p>
 			<Button/>
 			{data.map((item) => (
-				<JournalItem
-					key={item.id}
-					title={item.title}
-					date={item.date}
-					text={item.text}
-				/>
+				<CardButton key={item.id}>
+					<JournalItem
+						title={item.title}
+						date={item.date}
+						text={item.text}
+					/>
+				</CardButton>
 			))}
 		</>
 	);
