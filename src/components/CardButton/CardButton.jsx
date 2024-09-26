@@ -2,7 +2,7 @@ import './CardButton.css';
 
 function CardButton({ children }) {
 	return (
-		<button className={'card-button'}>
+		<button onClick={() => console.log('Hello!')} className={'card-button'}>
 			{children}
 		</button>
 	);

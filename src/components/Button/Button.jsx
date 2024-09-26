@@ -2,7 +2,7 @@ import './Button.css';
 
 function Button() {
 	return (
-		<button className="button accent">Сохранить</button>
+		<button onClick={() => console.log('hello')} className="button accent">Сохранить</button>
 	);
 }
 
