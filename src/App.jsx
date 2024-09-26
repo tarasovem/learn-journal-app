@@ -6,16 +6,19 @@ import JournalItem from './components/JournalItem/JournalItem';
 function App() {
 	const data = [
 		{
+			id: 1,
 			title: 'Подготовка к обновлению курсов',
 			date: new Date(),
 			text: 'Сегодня провёл весь день за...'
 		},
 		{
+			id: 2,
 			title: 'Поход в годы',
 			date: new Date(),
 			text: 'Думал, что очень много време...'
 		},
 		{
+			id: 3,
 			title: 'Подготовка к обновлению курсов',
 			date: new Date(),
 			text: 'Создал первую заметку, чтобы ...'
