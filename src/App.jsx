@@ -52,6 +52,7 @@ function App() {
 			</LeftPanel>
 			<Body>
 				Body
+				<JournalForm/>
 			</Body>
 		</div>
 	);
