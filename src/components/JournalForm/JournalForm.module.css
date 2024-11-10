@@ -4,6 +4,10 @@
 	gap: 30px;
 }
 
+.input {
+	font-family: var(--font-family);
+}
+
 .invalid {
 	border: 1px solid red;
 	background-color: rgb(44, 5, 5);

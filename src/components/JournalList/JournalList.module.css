@@ -1,0 +1,13 @@
+.journal-list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.no-items {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.5;
+	padding: 20px;
+	margin: 0;
+}

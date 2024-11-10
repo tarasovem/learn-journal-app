@@ -2,5 +2,7 @@
 	width: 400px;
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 	gap: 30px;
+	padding: 30px 20px;
 }

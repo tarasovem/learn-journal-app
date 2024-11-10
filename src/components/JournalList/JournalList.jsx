@@ -1,10 +1,10 @@
-import './JournalList.css';
+import styles from './JournalList.module.css';
 import CardButton from '../CardButton/CardButton';
 import JournalItem from '../JournalItem/JournalItem';
 
 function JournalList({ items }) {
 	if (items.length === 0) {
-		return <p>Записей пока нет, добавьте первую!</p>;
+		return <p className={styles['no-items']}>Записей пока нет, добавьте первую!</p>;
 	}
 
 	const sortItems = (a, b) => {
