@@ -30,7 +30,7 @@ function App() {
 		setItems(oldItems => [...oldItems, {
 			text: item.text,
 			title: item.title,
-			date: item.date,
+			date: new Date(item.date),
 			id: oldItems.length > 0 ? Math.max(...oldItems.map(el => el.id)) + 1 : 1
 		}]);
 	};
