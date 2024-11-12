@@ -1,4 +1,5 @@
 import styles from './JournalForm.module.css';
+import buttonStyles from '../Button/Button.module.css';
 import Button from '../Button/Button';
 import { useEffect, useReducer } from 'react';
 import cn from 'classnames';
@@ -42,17 +43,23 @@ function JournalForm({onSubmit}) {
 	return (
 		<>
 			<form className={styles['journal-form']} onSubmit={addJournalItem}>
-				<input type="text" value={values.title} onChange={handleChange} name='title' className={cn(styles['input'], {
+				<input type="text" value={values.title} onChange={handleChange} name='title' className={cn(styles['input'], styles['title'], {
 					[styles['invalid']]: !isValid.title
-				})} />
-				<input type="date" value={values.date} onChange={handleChange} name='date' className={cn(styles['input'], {
+				})} placeholder='Название' />
+				<input type="date" value={values.date} onChange={handleChange} name='date' className={cn(styles['input'], styles['date'], {
 					[styles['invalid']]: !isValid.date
 				})} />
-				<input type="text" value={values.tag} onChange={handleChange} name='tag'/>
-				<textarea name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], {
+				<input type="text" value={values.tag} onChange={handleChange} name='tag' className={cn(styles['input'], styles['tag'])} placeholder='Тег'/>
+				<textarea name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], styles['text'], {
 					[styles['invalid']]: !isValid.text
-				})}></textarea>
-				<Button text='Сохранить' />
+				})} placeholder='Текст'></textarea>
+				<Button 
+					text='Сохранить' 
+					className={cn(
+						buttonStyles.buttonAccent, 
+						buttonStyles.buttonSubmit
+					)}
+				/>
 			</form>
 		</>
 	);

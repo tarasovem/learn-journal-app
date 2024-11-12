@@ -1,3 +1,4 @@
 .body {
+	flex: auto;
 	padding: 50px;
 }

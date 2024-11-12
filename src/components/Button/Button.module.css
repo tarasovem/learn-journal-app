@@ -12,6 +12,12 @@
 	background-color: #22208f;
 }
 
-.accent {
+.buttonAccent {
 	background-color: #312eb5;
+}
+
+.buttonSubmit {
+	padding: 8px 20px;
+	line-height: 26px;
+	align-self: flex-start;
 }
