@@ -28,7 +28,7 @@ function JournalForm({onSubmit}) {
 			onSubmit(values);
 			dispathForm({type: 'CLEAR'});
 		}       
-	}, [isFormReadyToSubmit]);
+	}, [isFormReadyToSubmit, onSubmit, values]);
 
 	const addJournalItem = (event) => {
 		event.preventDefault();
