@@ -1,6 +1,7 @@
 import styles from './JournalForm.module.css';
 import buttonStyles from '../Button/Button.module.css';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 import { useEffect, useReducer, useRef } from 'react';
 import cn from 'classnames';
 import { formReducer, INITIAL_STATE } from './JourtalForm.state';
@@ -60,13 +61,9 @@ function JournalForm({onSubmit}) {
 	return (
 		<>
 			<form className={styles['journal-form']} onSubmit={addJournalItem}>
-				<input type="text" ref={titleRef} value={values.title} onChange={handleChange} name='title' className={cn(styles['input'], styles['title'], {
-					[styles['invalid']]: !isValid.title
-				})} placeholder='Название' />
-				<input type="date" ref={dateRef} value={values.date} onChange={handleChange} name='date' className={cn(styles['input'], styles['date'], {
-					[styles['invalid']]: !isValid.date
-				})} />
-				<input type="text" value={values.tag} onChange={handleChange} name='tag' className={cn(styles['input'], styles['tag'])} placeholder='Тег'/>
+				<Input type="text" ref={titleRef} value={values.title} onChange={handleChange} isValid={isValid.title} name='title' appearance='title' placeholder='Название' />
+				<Input type="date" ref={dateRef} value={values.date} onChange={handleChange} isValid={isValid.date} name='date' appearance='date' />
+				<Input type="text" value={values.tag} onChange={handleChange} name='tag' appearance='tag' placeholder='Тег'/>
 				<textarea ref={textRef} name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], styles['text'], {
 					[styles['invalid']]: !isValid.text
 				})} placeholder='Текст'></textarea>
