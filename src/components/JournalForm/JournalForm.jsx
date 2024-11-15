@@ -2,9 +2,10 @@ import styles from './JournalForm.module.css';
 import buttonStyles from '../Button/Button.module.css';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useContext } from 'react';
 import cn from 'classnames';
-import { formReducer, INITIAL_STATE } from './JourtalForm.state';
+import { formReducer, INITIAL_STATE } from './JourtalForm.state';	
+import { UserContext } from '../../context/user.context.jsx';
 
 function JournalForm({onSubmit}) {
 	const [formState, dispathForm] = useReducer(formReducer, INITIAL_STATE);
@@ -12,6 +13,7 @@ function JournalForm({onSubmit}) {
 	const titleRef = useRef();
 	const dateRef = useRef();
 	const textRef = useRef();
+	const {userId} = useContext(UserContext);
 
 	const focusError = (isValid) => {
 		switch (true) {
@@ -53,29 +55,31 @@ function JournalForm({onSubmit}) {
 		dispathForm({type: 'SUBMIT'});
 	};
 
+	useEffect(() => {
+		dispathForm({type: 'SET_VALUES', payload: {name: 'userId', value: userId}});
+	}, [userId]);
+
 	const handleChange = (event) => {
 		const {name, value} = event.target;
 		dispathForm({type: 'SET_VALUES', payload: {name, value}});
 	};
 
 	return (
-		<>
-			<form className={styles['journal-form']} onSubmit={addJournalItem}>
-				<Input type="text" ref={titleRef} value={values.title} onChange={handleChange} isValid={isValid.title} name='title' appearance='title' placeholder='Название' />
-				<Input type="date" ref={dateRef} value={values.date} onChange={handleChange} isValid={isValid.date} name='date' appearance='date' />
-				<Input type="text" value={values.tag} onChange={handleChange} name='tag' appearance='tag' placeholder='Тег'/>
-				<textarea ref={textRef} name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], styles['text'], {
-					[styles['invalid']]: !isValid.text
-				})} placeholder='Текст'></textarea>
-				<Button 
-					text='Сохранить' 
-					className={cn(
-						buttonStyles.buttonAccent, 
-						buttonStyles.buttonSubmit
-					)}
-				/>
-			</form>
-		</>
+		<form className={styles['journal-form']} onSubmit={addJournalItem}>
+			<Input type="text" ref={titleRef} value={values.title} onChange={handleChange} isValid={isValid.title} name='title' appearance='title' placeholder='Название' />
+			<Input type="date" ref={dateRef} value={values.date} onChange={handleChange} isValid={isValid.date} name='date' appearance='date' />
+			<Input type="text" value={values.tag} onChange={handleChange} name='tag' appearance='tag' placeholder='Тег'/>
+			<textarea ref={textRef} name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], styles['text'], {
+				[styles['invalid']]: !isValid.text
+			})} placeholder='Текст'></textarea>
+			<Button 
+				text='Сохранить' 
+				className={cn(
+					buttonStyles.buttonAccent, 
+					buttonStyles.buttonSubmit
+				)}
+			/>
+		</form>
 	);
 }
 
