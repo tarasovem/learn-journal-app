@@ -1,7 +1,12 @@
 .input {
-	font-family: var(--font-family);
-	background-color: transparent;
 	border: none;
+	background: none;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	font-family: 'Source Sans 3', sans-serif;
+	width: 100%;
 }
 
 .invalid {
@@ -17,7 +22,6 @@
 .date {
 	font-size: 14px;
 	line-height: 18px;
-	margin-top: 30px;
 }
 
 .tag {
