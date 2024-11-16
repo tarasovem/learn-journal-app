@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { formReducer, INITIAL_STATE } from './JourtalForm.state';	
 import { UserContext } from '../../context/user.context.jsx';
 
-function JournalForm({onSubmit}) {
+function JournalForm({onSubmit, data}) {
 	const [formState, dispathForm] = useReducer(formReducer, INITIAL_STATE);
 	const {values, isValid, isFormReadyToSubmit} = formState;
 	const titleRef = useRef();
@@ -30,6 +30,10 @@ function JournalForm({onSubmit}) {
 	};
 
 	useEffect(() => {
+		dispathForm({type: 'SET_VALUES', payload: {...data}});
+	}, [data]);
+
+	useEffect(() => {
 		let timerId;
 		if (!isValid.title || !isValid.text || !isValid.date) {
 			timerId = setTimeout(() => {
@@ -47,27 +51,25 @@ function JournalForm({onSubmit}) {
 		if (isFormReadyToSubmit) {
 			onSubmit(values);
 			dispathForm({type: 'CLEAR'});
+			dispathForm({type: 'SET_VALUES', payload: {name: 'userId', value: userId}});
 		}       
-	}, [isFormReadyToSubmit, onSubmit, values]);
+	}, [isFormReadyToSubmit, onSubmit, values, userId]);
 
 	const addJournalItem = (event) => {
 		event.preventDefault();
+		dispathForm({type: 'SET_VALUES', payload: {name: 'userId', value: userId}});
 		dispathForm({type: 'SUBMIT'});
 	};
 
-	useEffect(() => {
-		dispathForm({type: 'SET_VALUES', payload: {name: 'userId', value: userId}});
-	}, [userId]);
-
 	const handleChange = (event) => {
 		const {name, value} = event.target;
-		dispathForm({type: 'SET_VALUES', payload: {name, value}});
+		dispathForm({type: 'SET_VALUES', payload: {[name]: value}});
 	};
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<Input type="text" ref={titleRef} value={values.title} onChange={handleChange} isValid={isValid.title} name='title' appearance='title' placeholder='Название' />
-			<Input type="date" ref={dateRef} value={values.date} onChange={handleChange} isValid={isValid.date} name='date' appearance='date' />
+			<Input type="date" ref={dateRef} value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''} onChange={handleChange} isValid={isValid.date} name='date' appearance='date' />
 			<Input type="text" value={values.tag} onChange={handleChange} name='tag' appearance='tag' placeholder='Тег'/>
 			<textarea ref={textRef} name="text" id="" cols="30" rows="10" value={values.text} onChange={handleChange} className={cn(styles['input'], styles['text'], {
 				[styles['invalid']]: !isValid.text
