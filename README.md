@@ -1,8 +1,30 @@
-# React + Vite
+# Учебный проект "Путешествие"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание проекта
 
-Currently, two official plugins are available:
+Учебный проект, разработанный в рамках обучения на курсе "React + Redux" от обучающей платформы "PurpleSchool".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Разработка
+
+### 1. Установка зависимостей
+
+```bash
+npm install
+```
+
+### 2. Запуск проекта
+
+```bash
+npm run dev
+```
+
+### 3. Сборка проекта
+
+```bash
+npm run build
+```
+
+## Технологии
+
+- React
+- Vite
